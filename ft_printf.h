@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 19:46:03 by juitz             #+#    #+#             */
-/*   Updated: 2023/10/22 16:24:02 by codespace        ###   ########.fr       */
+/*   Created: 2023/10/05 15:48:49 by juitz             #+#    #+#             */
+/*   Updated: 2023/10/22 16:46:26 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
 #include <unistd.h>
-#include "ft_printf.h"
+#include <stdarg.h>
 
-int	ft_putstr(char *s)
-{	
-	if (!s)
-		return (write(1, "(null)", 6));
-	if (s != 0)
-	{
-		write (1, s, ft_strlen(s));
-	}
-	return (ft_strlen(s));
-}
+int     ft_printnbr(int n);
+int     ft_putchar(int c);
+int     ft_putstr(char *s);
+int     ft_print_hex_lc(unsigned int num);
+int		ft_print_hex_uc(unsigned int num);
+int     ft_print_unsigned(unsigned int n);
+int		ft_print_pointer(unsigned long long ptr);
+size_t     ft_strlen(const char *s);
+char	*ft_strchr(const char *str, int c);
 
-/* int	main(void)
-{
-	char str[] = "";
-	ft_putstr(str);
-} 
- */
+#endif

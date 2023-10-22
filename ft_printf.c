@@ -6,36 +6,36 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:54:07 by juitz             #+#    #+#             */
-/*   Updated: 2023/10/22 18:07:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/22 19:22:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 #include <stdio.h>
 
 
 static int	check_type(const char *format, void *args)
 {
-	int	counter;
+	unsigned int	counter;
 
 	counter = 0;
 	if	(*format == 'c')
-		counter += ft_putchar(*(int *) args);
+		counter += ft_putchar((int) args);
 	else if	(*format == 's')
 		counter += ft_putstr((char *) args);
 	else if (*format == 'd' || *format == 'i')
-		counter += ft_printnbr(*(int *) args);
+		counter += ft_printnbr((int) args);
 	else if (*format == 'u')
-		counter += ft_print_unsigned(*(unsigned int *) args);
+		counter += ft_print_unsigned((unsigned int) args);
 	else if (*format == 'x')
-		counter += ft_print_hex_lc(*(unsigned int *) args);
+		counter += ft_print_hex_lc((unsigned long long) args);
 	else if (*format == 'X')
-		counter += ft_print_hex_uc(*(unsigned int *) args);
+		counter += ft_print_hex_uc((unsigned long long) args);
 	else if (*format == 'p')
-		counter += ft_print_pointer(*(unsigned long *) args);
+		counter += ft_print_pointer((unsigned long long) args);
 	/* else if (*format == '%')
-		counter += ft_putchar('%'); */
+		counter += ft_putchar('%'); */ 
 	return (counter);
 }
 
@@ -237,7 +237,8 @@ int	main(void)
 	result_ft = ft_printf(format, 18446744073709551615ULL);
 	result_print = printf(format, 18446744073709551615ULL);
 	printf("Return: ft_printf=%d printf=%d\n\n", result_ft, result_print);
-	
+
+
 }
 
 /* int	main(void)

@@ -6,16 +6,17 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:55:38 by codespace         #+#    #+#             */
-/*   Updated: 2023/10/22 17:12:10 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/22 19:17:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static int  ptr_len(unsigned long int num)
+static int  ptr_len(unsigned long long num)
 {
     unsigned int    counter;
     
+    counter = 0;
     while (num != 0)
     {
         num /= 16;
@@ -24,7 +25,7 @@ static int  ptr_len(unsigned long int num)
     return(counter);
 }
 
-void    put_ptr(unsigned long int num)
+void    put_ptr(unsigned long long num)
 {
     if (num >= 16)
     {   
@@ -40,14 +41,18 @@ void    put_ptr(unsigned long int num)
     }
 }
 
-int ft_print_pointer(unsigned long int num)
+int ft_print_pointer(unsigned long long ptr)
 {
-    if (num == 0)
-        return (write(1, "(nil)", 6));
+    int counter;
+
+    counter = 0;
+    if (ptr == 0)
+        counter += (write(1, "(nil)", 5));
     else
     {
-        write(1, "0x", 2);
-        put_ptr(num);
+        counter += write(1, "0x", 2);
+        put_ptr(ptr);
+        counter += ptr_len(ptr);
     }
-    return (ptr_len(num));
+    return (counter);
 }
