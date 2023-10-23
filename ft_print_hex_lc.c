@@ -3,50 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex_lc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:46:20 by codespace         #+#    #+#             */
-/*   Updated: 2023/10/22 16:23:33 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/23 14:48:14 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int    hex_len(unsigned int num)
+static int	hex_len(unsigned int num)
 {
-    int counter;
+	int	counter;
 
 	counter = 0;
-    while (num != 0)
-    {
-         num /= 16;
-         counter++;
-    }
-    return (counter);
+	while (num != 0)
+	{
+		num /= 16;
+		counter++;
+	}
+	return (counter);
 }
 
-void    put_hexa_lc(unsigned int num)
+void	put_hexa_lc(unsigned int num)
 {
-    if (num >= 16)
-        {
-            put_hexa_lc(num / 16);
-            put_hexa_lc(num % 16);
-        }
-    else
-    {
-        if (num <= 9)
-            ft_putchar(num + '0');
-        else
-            ft_putchar(num - 10 + 'a');
-    }
+	if (num >= 16)
+	{
+		put_hexa_lc(num / 16);
+		put_hexa_lc(num % 16);
+	}
+	else
+	{
+		if (num <= 9)
+			ft_putchar(num + '0');
+		else
+			ft_putchar(num - 10 + 'a');
+	}
 }
 
-int ft_print_hex_lc(unsigned int num)
+int	ft_print_hex_lc(unsigned int num)
 {
-    if (num == 0)
-        return (ft_putchar('0'));
-    put_hexa_lc(num);
-        return(hex_len(num));
+	if (num == 0)
+		return (ft_putchar('0'));
+	put_hexa_lc(num);
+	return (hex_len(num));
 }
 
 /* 

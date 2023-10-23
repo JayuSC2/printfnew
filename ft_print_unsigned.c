@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 10:48:40 by codespace         #+#    #+#             */
-/*   Updated: 2023/10/22 16:23:47 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/23 14:54:03 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 int	unsigned_len(unsigned int num)
 {
 	int	counter;
-	
+
 	counter = 0;
+	if (num == 0)
+		return (1);
 	while (num > 0)
 	{
 		num /= 10;
@@ -25,6 +27,7 @@ int	unsigned_len(unsigned int num)
 	}
 	return (counter);
 }
+
 void	ft_put_unsigned(unsigned int n)
 {
 	char	nb;
@@ -34,14 +37,14 @@ void	ft_put_unsigned(unsigned int n)
 		nb = n + '0';
 		write(1, &nb, 1);
 	}
-	else if (n < 4294967295)
+	else
 	{
-		ft_print_unsigned(n / 10);
-		ft_print_unsigned(n % 10);
+		ft_put_unsigned(n / 10);
+		ft_put_unsigned(n % 10);
 	}
 }
 
-int ft_print_unsigned(unsigned int n)
+int	ft_print_unsigned(unsigned int n)
 {
 	ft_put_unsigned(n);
 	return (unsigned_len(n));
@@ -70,9 +73,8 @@ int main(void)
 {
 	int	counter = 0;
 	
-    ft_print_unsigned(-4, &counter);
-	printf("%s", "\n");
-	printf("%d", counter);
-	printf("%s", "\n");
+
 	printf("%u",-4);
+	ft_printf("%u\n",-4);
+	printf("%u",0);
 } */
